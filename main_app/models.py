@@ -7,7 +7,7 @@ from django.db import models
 class Category(models.Model):
     category_name = models.CharField(max_length=100)
     category_description = models.CharField(max_length=500)
-    category_img1 = models.CharField(max_length=200)
+    category_img1 = models.CharField(max_length=200, default='https://i.imgur.com/hGiBFyv.png')
     category_img2 = models.CharField(max_length=200)
     category_img3 = models.CharField(max_length=200)
     active_listing_total = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
@@ -28,6 +28,7 @@ LISTING_COMP_CHOICES = (
     ('Skill Swap/Trade', 'Skill Swap/Trade'),
     ('Paid/Fee-based', 'Paid/Fee-based'),
     ('Free/No charge', 'Free/No charge'),
+    ('I\'m Flexible!', 'I\'m Flexible!'),
 )
 
 LISTING_STATUS_CHOICES = (
@@ -41,6 +42,9 @@ LISTING_STATUS_CHOICES = (
 class Listing(models.Model):
     listing_name = models.CharField(max_length=200)
     listing_description = models.TextField(max_length=500)
+    listing_img1 = models.CharField(max_length=200, default='https://i.imgur.com/tvBdJVL.png')
+    listing_img2 = models.CharField(max_length=200, default='https://i.imgur.com/tvBdJVL.png')
+    listing_img3 = models.CharField(max_length=200, default='https://i.imgur.com/tvBdJVL.png')
     listing_type = models.CharField(max_length=10, choices=LISTING_TYPE, default='Skill Swap/Trade')
     listing_comp_type = models.CharField(max_length=20, choices=LISTING_COMP_CHOICES)
     listing_status = models.CharField(max_length=20, choices=LISTING_STATUS_CHOICES)
