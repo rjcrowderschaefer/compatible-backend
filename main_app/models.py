@@ -20,3 +20,12 @@ class Category(models.Model):
     
     class Meta:
         ordering = ['category_name']
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField
+    feedback = models.TextField(max_length=500)
+
+    def __str__(self):
+        return self.name
