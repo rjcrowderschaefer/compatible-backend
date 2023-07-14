@@ -5,6 +5,7 @@ from main_app import views
 
 router = routers.DefaultRouter()
 router.register(r'categories', views.CategoryView, 'category')
+router.register(r'listings', views.ListingView, 'listing')
 router.register(r'feedbacks', views.FeedbackView, 'feedback')
 
 urlpatterns = [
