@@ -5,7 +5,7 @@ from main_app import views
 
 router = routers.DefaultRouter()
 router.register(r'categories', views.CategoryView, 'category')
-router.register(r'contacts', views.ContactView, 'contact')
+router.register(r'feedbacks', views.FeedbackView, 'feedback')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

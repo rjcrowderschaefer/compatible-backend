@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 # class CustomerProfile(models.Model):
 #     customer_first_name = models.CharField(max_length=50)
 #     customer_last_name = models.
@@ -22,10 +20,14 @@ class Category(models.Model):
         ordering = ['category_name']
 
 
-class Contact(models.Model):
+class Feedback(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField
     feedback = models.TextField(max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+    
+    class Meta: 
+        ordering = ['created_at']
