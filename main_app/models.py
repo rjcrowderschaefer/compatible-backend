@@ -41,22 +41,22 @@ LISTING_STATUS_CHOICES = (
 
 class Listing(models.Model):
     listing_name = models.CharField(max_length=200)
-    listing_description = models.TextField(max_length=500)
-    listing_img1 = models.CharField(max_length=200, default='https://i.imgur.com/tvBdJVL.png')
-    listing_img2 = models.CharField(max_length=200, default='https://i.imgur.com/tvBdJVL.png')
-    listing_img3 = models.CharField(max_length=200, default='https://i.imgur.com/tvBdJVL.png')
-    listing_type = models.CharField(max_length=10, choices=LISTING_TYPE, default='Skill Swap/Trade')
-    listing_comp_type = models.CharField(max_length=20, choices=LISTING_COMP_CHOICES)
-    listing_status = models.CharField(max_length=20, choices=LISTING_STATUS_CHOICES)
-    created_at = models.DateTimeField(auto_now_add=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="listings")
+    listing_description = models.TextField(max_length=500, blank=True)
+    listing_img1 = models.CharField(max_length=200, default='https://i.imgur.com/tvBdJVL.png', blank=True)
+    listing_img2 = models.CharField(max_length=200, default='https://i.imgur.com/tvBdJVL.png', blank=True)
+    listing_img3 = models.CharField(max_length=200, default='https://i.imgur.com/tvBdJVL.png', blank=True)
+    listing_type = models.CharField(max_length=10, choices=LISTING_TYPE, default='Skill Swap/Trade', blank=True)
+    listing_comp_type = models.CharField(max_length=20, choices=LISTING_COMP_CHOICES, blank=True)
+    listing_status = models.CharField(max_length=20, choices=LISTING_STATUS_CHOICES, default='Active', blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="listings", default=1)
 
     def __str__(self):
         return self.listing_name
 
 class Feedback(models.Model):
     name = models.CharField(max_length=200)
-    email = models.EmailField
+    email = models.EmailField(max_length=254)
     feedback = models.TextField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
 
