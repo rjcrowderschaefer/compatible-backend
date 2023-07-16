@@ -12,6 +12,7 @@ class Category(models.Model):
     category_img3 = models.CharField(max_length=200)
     active_listing_total = models.PositiveSmallIntegerField(default=0, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    featured_category = models.BooleanField(default=False)
 
     def __str__(self):
         return self.category_name
@@ -53,6 +54,13 @@ class Listing(models.Model):
 
     def __str__(self):
         return self.listing_name
+
+class FeaturedListing(models.Model):
+    name = models.CharField(max_length=150)
+    listings = models.ManyToManyField(Listing)
+
+    def __str__(self):
+        return self.title
 
 class Feedback(models.Model):
     name = models.CharField(max_length=200)

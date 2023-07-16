@@ -1,18 +1,10 @@
 from rest_framework import serializers
-from .models import Category, Listing, Feedback
+from .models import Category, Listing, Feedback, FeaturedListing
 
-# Song
 class ListingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Listing
         fields = '__all__'
-
-# Artist
-
-# class CategorySerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Category
-#         fields = '__all__'
 
 class CategorySerializer(serializers.ModelSerializer):
     listings = serializers.PrimaryKeyRelatedField(
@@ -25,6 +17,10 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
+class FeaturedListingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FeaturedListing
+        fields = '__all__'
 
 class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
