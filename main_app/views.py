@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import CategorySerializer, ListingSerializer, FeaturedListingSerializer, FeedbackSerializer
-from .models import Category, Listing, Feedback, FeaturedListing
+from .serializers import CategorySerializer, ListingSerializer, FeaturedListingSerializer, FeedbackSerializer, UserSerializer
+from .models import Category, Listing, Feedback, FeaturedListing, CustomUser
 
 # Create your views here.
 
@@ -20,3 +20,7 @@ class FeaturedListingView(viewsets.ModelViewSet):
 class FeedbackView(viewsets.ModelViewSet):
     serializer_class = FeedbackSerializer
     queryset = Feedback.objects.all()
+
+class CustomUserView(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = CustomUser.objects.all()

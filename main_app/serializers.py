@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Listing, Feedback, FeaturedListing
+from .models import Category, Listing, Feedback, FeaturedListing, CustomUser
 
 class ListingSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,3 +26,8 @@ class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
         fields = '__all__'
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('email', 'last_login', 'date_joined', 'is_staff')

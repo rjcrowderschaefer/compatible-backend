@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-lki^zk_n&7vvxxr@(fbohdg!3q*)p0l%skeo^6t4p$ehx+6nf@
 DEBUG = True
 
 ALLOWED_HOSTS = []
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'https://localhost:3000']
-CORS_ALLOWED_ORIGINS_REGEXES = []
+# CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'https://localhost:3000']
+# CORS_ALLOWED_ORIGINS_REGEXES = []
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000'
 ]
@@ -42,8 +42,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken', 
+    'rest_auth', 
+    'django.contrib.sites', 
+    'allauth', 
+    'allauth.account', 
+    'allauth.socialaccount', 
+    'rest_auth.registration', 
+    'corsheaders', 
     'main_app',
 ]
 
@@ -84,8 +91,8 @@ WSGI_APPLICATION = 'compatible.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'compatible',
     }
 }
 
@@ -130,3 +137,26 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'main_app.CustomUser'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_UNIQUE_EMAIL = True
+
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': "%m/%d/%Y %I:%M%P",
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+    'rest_framework.authentication.TokenAuthentication'
+    ]
+}

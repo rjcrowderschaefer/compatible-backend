@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # class CustomerProfile(models.Model):
@@ -73,3 +74,8 @@ class Feedback(models.Model):
     
     class Meta: 
         ordering = ['created_at']
+
+class CustomUser(AbstractUser):
+
+    def __str__(self):
+        return self.email
