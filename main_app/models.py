@@ -7,7 +7,7 @@ from django.db import models
 
 class Category(models.Model):
     category_name = models.CharField(max_length=100)
-    category_description = models.CharField(max_length=500)
+    category_description = models.CharField(max_length=2000)
     category_img1 = models.CharField(max_length=200, default='https://i.imgur.com/hGiBFyv.png')
     category_img2 = models.CharField(max_length=200)
     category_img3 = models.CharField(max_length=200)
